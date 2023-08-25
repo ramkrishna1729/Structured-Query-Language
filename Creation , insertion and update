@@ -1,0 +1,25 @@
+create table sailor(
+sid number(4) constraint s_pk primary key,
+sname varchar2(20) constraint sname_check check (sname = upper(sname)),
+rating number(1),
+age number(2)
+)
+
+insert into sailor
+values (&sid, '&sname', &rat, &age);
+
+create table boat(
+bid number(2) constraint b_pk primary key,
+bname varchar2(30),
+color varchar2(10))
+/
+
+insert into boat 
+values(&bid, '&bname', '&color');
+
+create table reserves(
+sid number(4) constraint sid not null, constraint s_fk foreign key(sid) references sailor(sid) 
+bid number(2) constraint bid not null, constraint b_fk foreign key(bid) references boat(bid) on
+day date default sysdate
+)
+/
